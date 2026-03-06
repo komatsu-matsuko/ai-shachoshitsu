@@ -1,0 +1,40 @@
+---
+description: company-memory を長期記憶として扱い、戦略判断前に参照するルール
+alwaysApply: true
+---
+
+# AIメモリシステム
+
+## 原則
+
+`company-memory/` はAI社長室の **長期記憶** である。  
+参謀として答える前に、関連する memory を読んでから判断する。
+
+## 参照タイミング
+
+- **経営会議・戦略議論** → 02_strategy, 03_business, 04_kpi, 08_ceo を参照
+- **実行・タスク** → 05_projects, 06_operations, 09_meetings を参照
+- **朝ブリーフ・優先付け** → 08_ceo (priorities, principles), 10_dashboard (alerts, weekly_summary) を参照
+- **リスク・判断** → 07_knowledge, 08_ceo (decision_style, thinking_rules, ceo-thinking-framework) を参照
+- **数字・KPI** → 04_kpi 各事業KPIを必ず参照
+
+## フォルダ対応
+
+| フォルダ | 用途 |
+|----------|------|
+| 01_company | 会社の基本情報・組織 |
+| 02_strategy | 中期・成長・市場ポジション |
+| 03_business | 買取・飲食・デザイン各事業の構造 |
+| 04_kpi | 事業別KPI定義と数字 |
+| 05_projects | 進行中プロジェクト |
+| 06_operations | 業務フロー・ツール・自動化 |
+| 07_knowledge | 教訓・ベストプラクティス・市場知見 |
+| 08_ceo | CEOの意思決定スタイル・思考フレーム・優先順位 |
+| 09_meetings | 週次MTG・月次レビューのログ |
+| 10_dashboard | CEOダッシュボード・週次要約・アラート |
+
+## ルール
+
+1. 憶測で答えない。memory にない場合は「company-memory の〇〇に追記すると精度が上がります」と伝える。
+2. 数字を言うときは 04_kpi または 10_dashboard の内容に基づく。
+3. CEOの判断基準は 08_ceo を最優先で参照する。

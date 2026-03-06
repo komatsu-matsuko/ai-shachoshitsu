@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>AI社長室｜幹部共有（印刷1枚版）</title>
+    <style>
+      :root{
+        --txt:#0b1020;
+        --muted:#374160;
+        --line:#d9deef;
+        --a:#2b59ff;
+        --good:#0aa36c;
+        --warn:#b85b00;
+        --bad:#b00038;
+        --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        --sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", "Yu Gothic", "Meiryo", "Segoe UI", Roboto, Arial, sans-serif;
+      }
+      *{ box-sizing:border-box; }
+      html,body{ margin:0; padding:0; background:#fff; color:var(--txt); font-family:var(--sans); }
+      a{ color:var(--a); text-decoration:none; border-bottom:1px solid rgba(43,89,255,.25); }
+      h1{ font-size:18px; margin:0 0 8px; letter-spacing:.01em; }
+      h2{ font-size:12px; margin:0 0 6px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); }
+      h3{ font-size:12.5px; margin:0 0 6px; }
+      p{ margin:0; color:var(--muted); font-size:11.5px; line-height:1.45; }
+
+      .page{ max-width: 1000px; margin: 0 auto; padding: 14px 14px 18px; }
+      .top{
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 12px 12px 10px;
+      }
+      .meta{
+        display:flex; flex-wrap:wrap; gap:6px 10px; margin-top: 8px;
+        color: var(--muted); font-size:11.5px;
+      }
+      .pill{
+        display:inline-flex; align-items:center; gap:8px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 5px 8px;
+        background:#f7f8fd;
+      }
+      .pill strong{ color:#0b1020; font-weight:700; }
+
+      .grid{
+        margin-top: 10px;
+        display:grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+      .box{
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 10px 10px 9px;
+        background:#fff;
+      }
+      .row{ display:flex; gap:10px; margin-top: 8px; }
+      .row > .box{ flex:1; }
+
+      .flow{
+        display:flex;
+        flex-wrap:wrap;
+        gap:6px 8px;
+        align-items:center;
+        margin-top: 6px;
+      }
+      .node{
+        border:1px solid var(--line);
+        border-radius:999px;
+        padding: 6px 8px;
+        background:#f7f8fd;
+        font-size: 11.5px;
+        color:#0b1020;
+        white-space:nowrap;
+      }
+      .node small{ color:var(--muted); font-weight:500; }
+      .arrow{
+        font-family: var(--mono);
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      table{
+        width:100%;
+        border-collapse:separate;
+        border-spacing:0;
+        font-size: 11.5px;
+        margin-top: 6px;
+      }
+      th,td{
+        border-top:1px solid var(--line);
+        border-left:1px solid var(--line);
+        padding: 7px 8px;
+        vertical-align:top;
+      }
+      th{ background:#f3f5ff; text-align:left; }
+      tr > *:last-child{ border-right:1px solid var(--line); }
+      tr:last-child > *{ border-bottom:1px solid var(--line); }
+      table tr:first-child th:first-child{ border-top-left-radius:10px; }
+      table tr:first-child th:last-child{ border-top-right-radius:10px; }
+      table tr:last-child td:first-child{ border-bottom-left-radius:10px; }
+      table tr:last-child td:last-child{ border-bottom-right-radius:10px; }
+
+      pre{
+        margin: 8px 0 0;
+        padding: 8px 9px;
+        border:1px solid var(--line);
+        border-radius: 10px;
+        background:#f7f8fd;
+        font-family: var(--mono);
+        font-size: 10.5px;
+        line-height: 1.45;
+        color:#0b1020;
+        white-space: pre-wrap;
+      }
+
+      .foot{
+        margin-top: 10px;
+        font-size: 10.5px;
+        color: var(--muted);
+        display:flex;
+        justify-content:space-between;
+        gap:10px;
+        flex-wrap:wrap;
+      }
+      .foot code{ font-family: var(--mono); }
+
+      /* 印刷最適化 */
+      @page { size: A4; margin: 10mm; }
+      @media print{
+        .page{ max-width:none; padding:0; }
+        a{ color:#111; border-bottom-color:#aaa; }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <section class="top">
+        <h1>AI社長室（Bremen）｜経営レイヤー・やること・報告フロー（印刷1枚版）</h1>
+        <p>
+          目的：<strong>AI＝思考</strong>／<strong>CEO＝判断</strong>／<strong>幹部＝実行</strong> を徹底し、意思決定を高速化する。<br />
+          判断の基準：<strong>利益 × 再現性 × スピード</strong>（まず数字→再現性→小さく試す→組織で回す→データ）
+        </p>
+        <div class="meta">
+          <span class="pill"><strong>CEO</strong>：油谷</span>
+          <span class="pill"><strong>幹部</strong>：濱村 / 笹川 / 岡 / 結城 / 吉浦</span>
+          <span class="pill"><strong>AI参謀団</strong>：橘 / 真田 / 水野 / 相沢 / 工藤 / 神谷</span>
+        </div>
+      </section>
+
+      <section class="grid" aria-label="構造と役割">
+        <div class="box">
+          <h2>経営構造（1行）</h2>
+          <div class="flow">
+            <span class="node">AI <small>思考</small></span><span class="arrow">→</span>
+            <span class="node">CEO <small>判断</small></span><span class="arrow">→</span>
+            <span class="node">幹部 <small>実行</small></span><span class="arrow">→</span>
+            <span class="node">現場</span>
+          </div>
+          <p style="margin-top:6px">AIは Insight→Recommendation→Execution Plan。CEOは運営管理をしない。</p>
+        </div>
+        <div class="box">
+          <h2>事業の軸（見る場所）</h2>
+          <p>キャッシュ：買取（Safari） / オペ：飲食（麺昇 神の手） / 価値：Studio13</p>
+          <p style="margin-top:6px">週次MTG：先週→KPI→問題→次アクション（60分）。</p>
+        </div>
+      </section>
+
+      <section class="row" aria-label="報告フロー">
+        <div class="box">
+          <h2>毎日（データ）</h2>
+          <div class="flow">
+            <span class="node">エアレジ</span><span class="arrow">→</span>
+            <span class="node">Uber</span><span class="arrow">→</span>
+            <span class="node">LINE</span><span class="arrow">→</span>
+            <span class="node">Sheets <small>日次売上報告</small></span>
+          </div>
+          <p style="margin-top:6px">手入力ゼロへ（自動化）。</p>
+        </div>
+        <div class="box">
+          <h2>週次（報告→判断→実行）</h2>
+          <div class="flow">
+            <span class="node">幹部報告</span><span class="arrow">→</span>
+            <span class="node">AI要約/タスク</span><span class="arrow">→</span>
+            <span class="node">CEO判断</span><span class="arrow">→</span>
+            <span class="node">幹部実行</span>
+          </div>
+          <p style="margin-top:6px">指示は「やること｜担当｜期限」で固定。</p>
+        </div>
+      </section>
+
+      <section class="box" aria-label="明日やること">
+        <h2>明日やること（最重要タスク）</h2>
+        <table>
+          <tr>
+            <th style="width:38%">タスク</th>
+            <th style="width:24%">担当</th>
+            <th style="width:18%">期限</th>
+            <th style="width:20%">勝利条件（Win）</th>
+          </tr>
+          <tr>
+            <td>日次売上の完全自動化（Uber・エアレジ・LINE → Google Sheets）</td>
+            <td>相沢（主）/ 工藤（実装）</td>
+            <td>明日EOD</td>
+            <td>Sheets書込み＋LINE取得の動作確認（最低ライン）</td>
+          </tr>
+        </table>
+      </section>
+
+      <section class="row" aria-label="テンプレ">
+        <div class="box">
+          <h2>週次MTG：幹部の発言テンプレ</h2>
+          <pre>①先週やったこと（3行以内）
+②問題（最大3つ）
+③次にやること（やること｜担当｜期限）</pre>
+        </div>
+        <div class="box">
+          <h2>夜：AIに依頼する文（経営会議）</h2>
+          <pre>経営会議
+議題：〇〇
+前提：目的（数字）/ 期限 / 制約
+お願い：分解→対策→社員への指示（やること｜担当｜期限）まで。厳しめに（リスクも）。</pre>
+        </div>
+      </section>
+
+      <div class="foot">
+        <div>参照：<code>運用仕様書.md</code> / <code>company-memory/10_dashboard/明日やること.md</code></div>
+        <div>版：印刷1枚 / 更新：必要に応じて</div>
+      </div>
+    </main>
+  </body>
+</html>
+

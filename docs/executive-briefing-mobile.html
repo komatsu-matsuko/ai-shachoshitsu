@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+    <meta name="color-scheme" content="dark" />
+    <title>AI社長室｜幹部共有（スマホ最適化）</title>
+    <style>
+      :root{
+        --bg:#070A12;
+        --bg2:#0B1020;
+        --card:#0f1a3be6;
+        --line:#283563;
+        --txt:#eaf0ff;
+        --muted:#aeb9dd;
+        --muted2:#7d89b3;
+        --accent:#7c5cff;
+        --accent2:#00d4ff;
+        --good:#44f0a8;
+        --warn:#ffcc66;
+        --bad:#ff6b8b;
+        --shadow: 0 18px 60px rgba(0,0,0,.55);
+        --shadow2: 0 10px 28px rgba(0,0,0,.35);
+        --radius: 18px;
+        --radius2: 14px;
+        --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        --sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", "Yu Gothic", "Meiryo", "Segoe UI", Roboto, Arial, sans-serif;
+      }
+      *{ box-sizing:border-box; }
+      html,body{ height:100%; }
+      body{
+        margin:0;
+        font-family:var(--sans);
+        color:var(--txt);
+        background:
+          radial-gradient(900px 700px at 20% 0%, rgba(124,92,255,.35), transparent 60%),
+          radial-gradient(900px 700px at 85% 10%, rgba(0,212,255,.22), transparent 60%),
+          linear-gradient(180deg, var(--bg), var(--bg2));
+        overflow-x:hidden;
+      }
+      a{ color:#b9c7ff; text-decoration:none; border-bottom:1px solid rgba(185,199,255,.28); }
+      .wrap{ max-width: 740px; margin:0 auto; padding: 16px 14px 28px; }
+
+      .top{
+        border-radius: 22px;
+        background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+        border: 1px solid rgba(185,199,255,.16);
+        box-shadow: var(--shadow);
+        padding: 14px 14px 12px;
+        position:sticky;
+        top: 10px;
+        z-index:10;
+        backdrop-filter: blur(10px);
+      }
+      .badge{
+        display:flex; align-items:center; gap:10px;
+        padding: 8px 10px;
+        border-radius: 999px;
+        border:1px solid rgba(255,255,255,.12);
+        background: rgba(0,0,0,.18);
+        color: var(--muted);
+        font-size: 12px;
+        letter-spacing:.02em;
+      }
+      .dot{
+        width:10px; height:10px; border-radius:99px;
+        background: conic-gradient(from 90deg, var(--accent), var(--accent2), var(--accent), var(--accent));
+        box-shadow: 0 0 0 4px rgba(124,92,255,.15);
+      }
+      h1{
+        margin: 10px 0 6px;
+        font-size: 18px;
+        line-height: 1.25;
+      }
+      .sub{
+        margin:0;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.55;
+      }
+      .pillRow{ margin-top: 10px; display:flex; gap:8px; flex-wrap:wrap; }
+      .pill{
+        display:inline-flex; align-items:center; gap:8px;
+        padding: 7px 10px;
+        border-radius: 999px;
+        border:1px solid rgba(255,255,255,.12);
+        background: rgba(0,0,0,.18);
+        color: var(--muted);
+        font-size: 12.5px;
+      }
+      .pill strong{ color:#fff; font-weight:750; }
+
+      .card{
+        margin-top: 12px;
+        border-radius: var(--radius);
+        background: rgba(10,14,28,.40);
+        border: 1px solid rgba(185,199,255,.14);
+        box-shadow: var(--shadow2);
+        overflow:hidden;
+      }
+      .card header{
+        padding: 14px 14px 12px;
+        border-bottom: 1px solid rgba(255,255,255,.10);
+      }
+      .card h2{
+        margin:0;
+        font-size: 14px;
+        letter-spacing:.02em;
+      }
+      .card .body{ padding: 12px 14px 14px; }
+      .card p{ margin:0; color: var(--muted); font-size: 13px; line-height: 1.6; }
+      .mini{
+        display:grid; gap:10px; margin-top: 10px;
+      }
+      .box{
+        border-radius: var(--radius2);
+        border:1px solid rgba(255,255,255,.12);
+        background: rgba(12,18,42,.55);
+        padding: 12px 12px 11px;
+      }
+      .box .t{ color: var(--muted2); font-size: 12px; margin-bottom: 6px; letter-spacing:.02em; }
+      .box .v{ font-weight: 780; }
+
+      details{
+        border-radius: var(--radius2);
+        border:1px solid rgba(255,255,255,.12);
+        background: rgba(12,18,42,.55);
+        overflow:hidden;
+      }
+      summary{
+        list-style:none;
+        cursor:pointer;
+        padding: 12px 12px 11px;
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap: 10px;
+      }
+      summary::-webkit-details-marker{ display:none; }
+      .chev{
+        width: 26px; height: 26px; border-radius: 999px;
+        display:grid; place-items:center;
+        border:1px solid rgba(255,255,255,.14);
+        color: rgba(255,255,255,.8);
+        background: rgba(0,0,0,.18);
+        font-family: var(--mono);
+      }
+      details .content{ padding: 0 12px 12px; color: var(--muted); font-size: 13px; line-height: 1.6; }
+      ul{ margin: 8px 0 0; padding-left: 18px; }
+      li{ margin: 6px 0; }
+      code{
+        font-family: var(--mono);
+        font-size: 12px;
+        color: #d9e3ff;
+        padding: 2px 6px;
+        border-radius: 10px;
+        border:1px solid rgba(255,255,255,.12);
+        background: rgba(0,0,0,.22);
+      }
+      pre{
+        margin: 10px 0 0;
+        padding: 12px 12px;
+        border-radius: 16px;
+        border:1px solid rgba(255,255,255,.12);
+        background: rgba(0,0,0,.25);
+        overflow:auto;
+        font-family: var(--mono);
+        font-size: 12px;
+        line-height: 1.55;
+        color: #eaf0ff;
+        white-space: pre-wrap;
+      }
+      .footer{
+        margin-top: 12px;
+        color: var(--muted2);
+        font-size: 12px;
+        line-height: 1.6;
+        padding: 12px 12px;
+        border-radius: 16px;
+        border:1px solid rgba(255,255,255,.12);
+        background: rgba(0,0,0,.18);
+      }
+    </style>
+  </head>
+  <body>
+    <main class="wrap">
+      <section class="top">
+        <div class="badge"><span class="dot"></span>AI社長室｜幹部共有（スマホ最適化）</div>
+        <h1>経営レイヤー・やること・報告フロー</h1>
+        <p class="sub">
+          目的：<strong>AI＝思考</strong>／<strong>CEO＝判断</strong>／<strong>幹部＝実行</strong> を徹底して、判断を速く・再現性高く回す。
+        </p>
+        <div class="pillRow">
+          <span class="pill"><strong>判断</strong>：利益×再現性×スピード</span>
+          <span class="pill"><strong>型</strong>：Insight→Recommendation→Execution</span>
+        </div>
+      </section>
+
+      <section class="card">
+        <header><h2>① 経営レイヤー（1行）</h2></header>
+        <div class="body">
+          <div class="mini">
+            <div class="box"><div class="t">構造</div><div class="v">AI（思考）→ CEO（判断）→ 幹部（実行）→ 現場</div></div>
+            <div class="box"><div class="t">CEO</div><div class="v">油谷（運営管理はしない／戦略・判断に集中）</div></div>
+            <div class="box"><div class="t">幹部</div><div class="v">濱村（外部）/ 笹川（買取）/ 岡（飲食）/ 結城（管理）/ 吉浦（デザイン）</div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <header><h2>② 報告フロー（毎日/週次/夜）</h2></header>
+        <div class="body">
+          <details open>
+            <summary><span>毎日（データ）</span><span class="chev">⌄</span></summary>
+            <div class="content">
+              エアレジ / Uber / LINE → Google Sheets（日次売上報告）→ AI社長室（ダッシュボード）。
+              <div style="margin-top:8px">保存先例：<code>company-memory/10_dashboard/日次売上_report.md</code></div>
+            </div>
+          </details>
+          <div style="height:10px"></div>
+          <details open>
+            <summary><span>週次MTG（60分）</span><span class="chev">⌄</span></summary>
+            <div class="content">
+              先週レビュー → KPI → 問題 → 次アクション。<br/>
+              AIは「議事録→要約→タスク（やること｜担当｜期限）」を生成。
+              <div style="margin-top:8px">ログ：<code>company-memory/09_meetings/weekly/</code></div>
+            </div>
+          </details>
+          <div style="height:10px"></div>
+          <details>
+            <summary><span>夜：AI経営会議</span><span class="chev">⌄</span></summary>
+            <div class="content">
+              橘（論点）→ 水野（データ）→ 真田（戦略）→ 神谷（リスク）→ 工藤（仕組み化）→ 相沢（実行）→ 橘（結論）
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <section class="card">
+        <header><h2>③ 今日/明日の“やること”の見方</h2></header>
+        <div class="body">
+          <p>明日のタスクはクエストボードで1画面化。</p>
+          <div class="mini" style="margin-top:10px">
+            <div class="box">
+              <div class="t">明日やること</div>
+              <div class="v">クエスト：<code>company-memory/10_dashboard/明日やること.md</code></div>
+            </div>
+            <div class="box">
+              <div class="t">アラート</div>
+              <div class="v"><code>company-memory/10_dashboard/alerts.md</code></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <header><h2>④ 幹部の「能力付与」＝報告テンプレ</h2></header>
+        <div class="body">
+          <details open>
+            <summary><span>各責任者の報告（コピペ）</span><span class="chev">⌄</span></summary>
+            <div class="content">
+              <pre>①先週やったこと（3行以内）
+②問題（最大3つ）
+③次にやること（やること｜担当｜期限）</pre>
+            </div>
+          </details>
+          <div style="height:10px"></div>
+          <details>
+            <summary><span>夜：AIへの依頼文（コピペ）</span><span class="chev">⌄</span></summary>
+            <div class="content">
+              <pre>経営会議
+議題：〇〇
+前提：目的（数字）/ 期限 / 制約
+お願い：分解→対策→社員への指示（やること｜担当｜期限）まで。厳しめに（リスクも）。</pre>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <div class="footer">
+        参照：<code>運用仕様書.md</code> / <code>08_ceo/ceo-thinking-framework.md</code> / <code>company-memory/10_dashboard/</code>
+      </div>
+    </main>
+  </body>
+</html>
+
